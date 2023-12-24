@@ -52,15 +52,14 @@ public class User {
 
         return chiffrer(passwordHashed);
     }
-
     public void setPasswordHashed(String password) {
         this.passwordHashed = password;
     }
-    private String chiffrer(String texteClair) {
+    private String chiffrer(String texteAChiffrer) {
         StringBuilder texteChiffre = new StringBuilder();
 
-        for (int i = 0; i < texteClair.length(); i++) {
-            char caractere = texteClair.charAt(i);
+        for (int i = 0; i < texteAChiffrer.length(); i++) {
+            char caractere = texteAChiffrer.charAt(i);
 
             // Remplacer chaque caractère par son suivant
             char caractereChiffre = (char) (caractere + 1);

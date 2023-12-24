@@ -11,36 +11,37 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         //Ajout d'un user
-     Scanner scanner =new Scanner(System.in);
-       User u=new User();
-        IUser user=new UserImpl();
-     IRole role=new RoleImpl();
+        Scanner scanner = new Scanner(System.in);
+        User u = new User();
+        IUser user = new UserImpl();
+        IRole role = new RoleImpl();
         System.out.println("Entrez votre email : ");
         u.setEmail(scanner.nextLine());
         System.out.println("Entrez votre mot de passe : ");
         u.setPasswordHashed(scanner.nextLine());
         System.out.println("=======  Listes des roles ======= ");
-       int i=1;
-        for (Role r:role.list()) {
-            System.out.println(i+"-"+r.getName());
+        int i = 1;
+        for (Role r : role.list()) {
+            System.out.println(i + "-" + r.getName());
             i++;
         }
         int choice;
-        do{
+        do {
             System.out.println("Choisissez votre role : ");
-            choice=scanner.nextInt();
-        }while (choice<1 || choice>2);
+            choice = scanner.nextInt();
+        } while (choice < 1 || choice > (i - 1));
         u.setRole(role.get(choice));
-        int ok=user.add(u);
-        if(ok==1) System.out.println("User ajoute avec success !");
+        int ok = user.add(u);
+        if (ok == 1) System.out.println("User ajoute avec success !");
         else System.out.println("Echec de l'ajout");
-        int j=1;
+        //Affichage des users
+        int j = 1;
         System.out.println("===== Affichage des Users =====");
-        for (User ur: user.list()) {
-            System.out.println("===== User "+j+" =====");
-            System.out.println("Email : "+ur.getEmail());
-            System.out.println("Password : "+ur.getPassword());
-            System.out.println("Role : "+role.get(ur.getRole().getId()).getName());
+        for (User ur : user.list()) {
+            System.out.println("===== User " + j + " =====");
+            System.out.println("Email : " + ur.getEmail());
+            System.out.println("Password : " + ur.getPassword());
+            System.out.println("Role : " + role.get(ur.getRole().getId()).getName());
             j++;
         }
 
